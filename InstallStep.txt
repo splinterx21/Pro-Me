@@ -9,3 +9,4 @@ Step by step
 6. Input .\Install.cmd
 7. Press Enter key to start drivers installation until return to next command line.
 8. After install successfully, please restart.
+9.Finish
