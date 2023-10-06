@@ -8,5 +8,5 @@ Step by step
 5. Select Yes, Allow this app to make changes to your device
 6. Input .\Install.cmd
 7. Press Enter key to start drivers installation until return to next command line.
-8. After install successfully, please restart.
+8. After install successfully, please restart
 9.Finish
