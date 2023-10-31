@@ -1,12 +1,61 @@
-Review the InstallStep.txt file to learn how to install the driver.
+aleo smart contract
 
-Step by step
-1. Extract the drivers package and get into the folder
-2. Click the File option from the upper left corner of the driver package folder
-3. Move the cursor to the Open Windows PowerShell option
-4. Select Open Windows PowerShell as administrator option
-5. Select Yes, Allow this app to make changes to your device
-6. Input .\Install.cmd
-7. Press Enter key to start drivers installation until return to next command line.
-8. After install successfully, please restart
-9.Finish
+
+نصب پیش نیازها 
+------------------------------------------------------------------
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+source $HOME/.cargo/env
+
+rustup install stable
+
+rustup update stable
+
+rustup default stable
+
+git clone https://github.com/AleoHQ/leo
+cd leo
+
+apt install clang gcc libssl-dev pkg-config
+
+cargo install --path .
+
+git clone https://github.com/AleoHQ/snarkOS.git --depth 1
+cd snarkOS
+
+./build_ubuntu.sh
+
+cargo install --path .
+
+
+توییت برای فاست
+------------------------------------------------------------------
+
+@AleoFaucet send 10 credits to aleo1y9s2yr50paljp0rd8wtqzy6ue9cshyyukwfslx2vhpj588vnguzqnndumr
+
+بعد از دریافت فاست به لینک زیر برید و افزونه را به مرورگر کروم اضافه کنید
+
+https://chrome.google.com/webstore/detail/json-beautifier-editor/lpopeocbeepakdnipejhlpcmifheolpl
+------------------------------------------------------------------
+
+cd $HOME
+
+mkdir demo_deploy_Leo_app && cd demo_deploy_Leo_app
+
+WALLETADDRESS=""
+
+APPNAME=helloworld_"${WALLETADDRESS:4:6}"
+
+leo new "${APPNAME}"
+
+PATHTOAPP=$(realpath -q $APPNAME)
+
+cd $PATHTOAPP && cd ..
+
+PRIVATEKEY=""
+
+RECORD=""
+
+snarkos developer deploy "${APPNAME}.aleo" --private-key "${PRIVATEKEY}" --query "https://vm.aleo.org/api" --path "./${APPNAME}/build/" --broadcast "https://vm.aleo.org/api/testnet3/transaction/broadcast" --fee 600000 --record "${RECORD}"
+
+
